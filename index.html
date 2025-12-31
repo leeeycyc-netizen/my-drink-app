@@ -1,468 +1,203 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  Plus, 
-  History, 
-  BarChart3, 
-  Coffee, 
-  Star, 
-  Trash2, 
-  X, 
-  TrendingUp, 
-  Heart, 
-  Calendar,
-  Check,
-  Award,
-  ChevronRight,
-  Smartphone,
-  Share,
-  ShoppingBag,
-  ListChecks
-} from 'lucide-react';
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超愛喝飲料</title>
+    <!-- 引入 React 與 Babel (確保使用 https 以免 GitHub Pages 載入失敗) -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide-react@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; -webkit-tap-highlight-color: transparent; }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #ec4899;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+            border: 2px solid white;
+        }
+        /* 避免在手機上滑動時觸發瀏覽器的下拉重新整理 */
+        html, body { overscroll-behavior-y: contain; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
 
-const STORAGE_KEY = 'drink_log_2026_pink_v4';
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+        const { 
+            Plus, History, BarChart3, Coffee, Star, Trash2, X, 
+            TrendingUp, Heart, Calendar, Check, Award, 
+            ChevronRight, Smartphone, Share, ShoppingBag, ListChecks 
+        } = lucideReact;
 
-// 選項定義
-const SWEETNESS_OPTIONS = ['無糖', '1分', '微糖', '半糖', '少糖', '正常'];
-const ICE_OPTIONS = ['去冰', '微冰', '少冰', '正常', '熱飲'];
+        const STORAGE_KEY = 'drink_log_2026_pink_v4';
+        const SWEETNESS_OPTIONS = ['無糖', '1分', '微糖', '半糖', '少糖', '正常'];
+        const ICE_OPTIONS = ['去冰', '微冰', '少冰', '正常', '熱飲'];
 
-const App = () => {
-  // 狀態管理
-  const [drinks, setDrinks] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isGuideOpen, setIsGuideOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('history');
-  
-  // 表單狀態
-  const [formData, setFormData] = useState({
-    shop: '',
-    item: '',
-    sweetness: '半糖',
-    ice: '少冰',
-    price: '',
-    rating: 5,
-    comment: '',
-    date: new Date().toISOString().split('T')[0]
-  });
+        const App = () => {
+            const [drinks, setDrinks] = useState([]);
+            const [isModalOpen, setIsModalOpen] = useState(false);
+            const [isGuideOpen, setIsGuideOpen] = useState(false);
+            const [activeTab, setActiveTab] = useState('history');
+            const [formData, setFormData] = useState({
+                shop: '', item: '', sweetness: '半糖', ice: '少冰',
+                price: '', rating: 5, comment: '',
+                date: new Date().toISOString().split('T')[0]
+            });
 
-  // 讀取資料
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        setDrinks(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to parse drinks", e);
-      }
-    }
-  }, []);
+            // 初始化：從 LocalStorage 讀取資料
+            useEffect(() => {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    try { 
+                        const parsed = JSON.parse(saved);
+                        if (Array.isArray(parsed)) setDrinks(parsed);
+                    } catch (e) { 
+                        console.error("資料讀取失敗", e); 
+                    }
+                }
+            }, []);
 
-  // 儲存資料
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(drinks));
-  }, [drinks]);
+            // 資料變動時自動存檔
+            useEffect(() => {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(drinks));
+            }, [drinks]);
 
-  // 統計數據
-  const stats = useMemo(() => {
-    const totalCount = drinks.length;
-    const totalPrice = drinks.reduce((sum, d) => sum + (Number(d.price) || 0), 0);
-    const avgPrice = totalCount > 0 ? Math.round(totalPrice / totalCount) : 0;
-    const avgRating = totalCount > 0 ? (drinks.reduce((sum, d) => sum + d.rating, 0) / totalCount).toFixed(1) : 0;
-    
-    return { totalCount, totalPrice, avgPrice, avgRating };
-  }, [drinks]);
+            const stats = useMemo(() => {
+                const totalCount = drinks.length;
+                const totalPrice = drinks.reduce((sum, d) => sum + (Number(d.price) || 0), 0);
+                const avgPrice = totalCount > 0 ? Math.round(totalPrice / totalCount) : 0;
+                const avgRating = totalCount > 0 ? (drinks.reduce((sum, d) => sum + d.rating, 0) / totalCount).toFixed(1) : 0;
+                return { totalCount, totalPrice, avgPrice, avgRating };
+            }, [drinks]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+            const handleInputChange = (e) => {
+                const { name, value } = e.target;
+                setFormData(prev => ({ ...prev, [name]: value }));
+            };
 
-  const handleAddDrink = (e) => {
-    e.preventDefault();
-    if (!formData.shop || !formData.item || !formData.price) return;
-    
-    const newDrink = {
-      ...formData,
-      id: Date.now(),
-      timestamp: new Date().getTime()
-    };
-    
-    setDrinks([newDrink, ...drinks]);
-    setIsModalOpen(false);
-    setFormData({
-      shop: '',
-      item: '',
-      sweetness: '半糖',
-      ice: '少冰',
-      price: '',
-      rating: 5,
-      comment: '',
-      date: new Date().toISOString().split('T')[0]
-    });
-  };
+            const handleAddDrink = (e) => {
+                e.preventDefault();
+                if (!formData.shop || !formData.item || !formData.price) return;
+                const newDrink = { ...formData, id: Date.now() };
+                setDrinks([newDrink, ...drinks]);
+                setIsModalOpen(false);
+                setFormData({
+                    shop: '', item: '', sweetness: '半糖', ice: '少冰',
+                    price: '', rating: 5, comment: '',
+                    date: new Date().toISOString().split('T')[0]
+                });
+            };
 
-  const deleteDrink = (id) => {
-    setDrinks(drinks.filter(d => d.id !== id));
-  };
+            const deleteDrink = (id) => {
+                if(window.confirm("確定要刪除這筆紀錄嗎？")) {
+                    setDrinks(drinks.filter(d => d.id !== id));
+                }
+            };
 
-  return (
-    <div className="min-h-screen bg-[#FFF5F7] text-slate-900 font-sans pb-28 selection:bg-pink-100">
-      {/* 頂部 Header */}
-      <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md px-6 pt-12 pb-6 border-b border-pink-50">
-        <div className="flex justify-between items-center max-w-2xl mx-auto">
-          <div>
-            <h1 className="text-2xl font-black text-pink-600 tracking-tight flex items-center gap-2">
-              超愛喝飲料
-              <Heart className="fill-pink-500 text-pink-500" size={20} />
-            </h1>
-            <div className="flex items-center gap-2 mt-1">
-              <span className="inline-block w-2 h-2 rounded-full bg-pink-400 animate-pulse"></span>
-              <p className="text-pink-400 text-[10px] font-black uppercase tracking-widest">Beverage Lover</p>
-            </div>
-          </div>
-          <button 
-            onClick={() => setIsGuideOpen(true)}
-            className="w-10 h-10 bg-pink-50 text-pink-500 rounded-xl flex items-center justify-center hover:bg-pink-100 transition-colors"
-          >
-            <Smartphone size={20} />
-          </button>
-        </div>
-      </header>
-
-      <div className="max-w-2xl mx-auto px-6 mt-6">
-        {/* 核心統計卡片 */}
-        <section className="grid grid-cols-2 gap-4 mb-8">
-          <div className="bg-white p-5 rounded-[2rem] shadow-sm border border-pink-50 relative overflow-hidden group">
-            <div className="absolute -right-4 -top-4 w-20 h-20 bg-pink-50 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
-            <p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1 relative z-10">Total Spent</p>
-            <div className="flex items-baseline gap-1 relative z-10">
-              <span className="text-xs font-bold text-pink-300">$</span>
-              <span className="text-3xl font-black text-pink-500 tracking-tighter">{stats.totalPrice}</span>
-            </div>
-            <div className="mt-3 flex items-center gap-1 text-[10px] font-bold text-pink-400 relative z-10">
-              <ShoppingBag size={12} />
-              <span>支出明細</span>
-            </div>
-          </div>
-          
-          <div className="bg-white p-5 rounded-[2rem] shadow-sm border border-pink-50 relative overflow-hidden group">
-            <div className="absolute -right-4 -top-4 w-20 h-20 bg-amber-50 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
-            <p className="text-amber-300 text-[10px] font-black uppercase tracking-widest mb-1 relative z-10">Cup Count</p>
-            <div className="flex items-baseline gap-1 relative z-10">
-              <span className="text-3xl font-black text-amber-500 tracking-tighter">{stats.totalCount}</span>
-              <span className="text-xs font-bold text-amber-300">杯</span>
-            </div>
-            <div className="mt-3 flex items-center gap-1 text-[10px] font-bold text-amber-500 relative z-10">
-              <ListChecks size={12} />
-              <span>飲用統計</span>
-            </div>
-          </div>
-        </section>
-
-        {activeTab === 'history' ? (
-          <div className="space-y-4">
-            <div className="flex justify-between items-center px-2">
-              <h2 className="font-black text-lg text-pink-600">歷史紀錄</h2>
-              <span className="text-[10px] font-bold bg-pink-100 px-2 py-1 rounded-lg text-pink-500 tracking-tighter uppercase">Recent</span>
-            </div>
-            
-            {drinks.length === 0 ? (
-              <div className="bg-white rounded-[2.5rem] p-12 text-center border-2 border-dashed border-pink-100">
-                <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Coffee className="text-pink-200" size={32} />
-                </div>
-                <p className="text-pink-300 font-bold text-sm">還沒有任何紀錄喔<br/>點擊下方粉紅按鈕開始！</p>
-              </div>
-            ) : (
-              drinks.map(drink => (
-                <div key={drink.id} className="bg-white p-5 rounded-[2.5rem] shadow-sm border border-pink-50 hover:shadow-md transition-all group">
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex gap-4">
-                      <div className="w-14 h-14 bg-pink-50 rounded-3xl flex items-center justify-center text-pink-400 group-hover:bg-pink-100 group-hover:text-pink-500 transition-colors duration-300">
-                        <Coffee size={24} />
-                      </div>
-                      <div>
-                        <h3 className="font-black text-slate-800 text-lg leading-tight">{drink.shop}</h3>
-                        <p className="text-slate-500 text-sm font-medium">{drink.item}</p>
-                        <div className="flex gap-2 mt-2">
-                          <span className="text-[10px] font-bold px-3 py-1 bg-pink-50 rounded-full text-pink-500">{drink.sweetness}</span>
-                          <span className="text-[10px] font-bold px-3 py-1 bg-pink-50 rounded-full text-pink-500">{drink.ice}</span>
+            return (
+                <div className="min-h-screen bg-[#FFF5F7] text-slate-900 pb-28">
+                    <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md px-6 pt-12 pb-6 border-b border-pink-50">
+                        <div className="flex justify-between items-center max-w-2xl mx-auto">
+                            <div>
+                                <h1 className="text-2xl font-black text-pink-600 flex items-center gap-2">
+                                    超愛喝飲料 <Heart className="fill-pink-500 text-pink-500" size={20} />
+                                </h1>
+                                <p className="text-pink-400 text-[10px] font-black uppercase tracking-widest">Beverage Lover</p>
+                            </div>
+                            <button onClick={() => setIsGuideOpen(true)} className="w-10 h-10 bg-pink-50 text-pink-500 rounded-xl flex items-center justify-center active:scale-95 transition-transform"><Smartphone size={20} /></button>
                         </div>
-                      </div>
+                    </header>
+
+                    <div className="max-w-2xl mx-auto px-6 mt-6">
+                        <section className="grid grid-cols-2 gap-4 mb-8">
+                            <div className="bg-white p-5 rounded-[2rem] shadow-sm border border-pink-50">
+                                <p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1">Total Spent</p>
+                                <div className="text-3xl font-black text-pink-500 tracking-tighter">${stats.totalPrice}</div>
+                                <div className="mt-3 flex items-center gap-1 text-[10px] font-bold text-pink-400"><ShoppingBag size={12} /><span>支出明細</span></div>
+                            </div>
+                            <div className="bg-white p-5 rounded-[2rem] shadow-sm border border-pink-50">
+                                <p className="text-amber-300 text-[10px] font-black uppercase tracking-widest mb-1">Cup Count</p>
+                                <div className="text-3xl font-black text-amber-500 tracking-tighter">{stats.totalCount} <span className="text-xs font-bold text-amber-300 ml-1">杯</span></div>
+                                <div className="mt-3 flex items-center gap-1 text-[10px] font-bold text-amber-500"><ListChecks size={12} /><span>飲用統計</span></div>
+                            </div>
+                        </section>
+
+                        {activeTab === 'history' ? (
+                            <div className="space-y-4">
+                                {drinks.length === 0 ? (
+                                    <div className="bg-white rounded-[2.5rem] p-12 text-center border-2 border-dashed border-pink-100 text-pink-300 font-bold">還沒有紀錄喔！點下方的 + 開始紀錄吧</div>
+                                ) : (
+                                    drinks.map(drink => (
+                                        <div key={drink.id} className="bg-white p-5 rounded-[2.5rem] border border-pink-50 shadow-sm animate-in fade-in duration-300">
+                                            <div className="flex justify-between items-start">
+                                                <div className="flex gap-4">
+                                                    <div className="w-14 h-14 bg-pink-50 rounded-3xl flex items-center justify-center text-pink-400"><Coffee size={24} /></div>
+                                                    <div>
+                                                        <h3 className="font-black text-slate-800 text-lg">{drink.shop}</h3>
+                                                        <p className="text-slate-500 text-sm font-medium">{drink.item}</p>
+                                                        <div className="flex gap-2 mt-2">
+                                                            <span className="text-[10px] font-bold px-3 py-1 bg-pink-50 rounded-full text-pink-500">{drink.sweetness}</span>
+                                                            <span className="text-[10px] font-bold px-3 py-1 bg-pink-50 rounded-full text-pink-500">{drink.ice}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="text-right">
+                                                    <p className="font-black text-xl text-pink-500 tracking-tighter">${drink.price}</p>
+                                                    <div className="flex gap-0.5 mt-1 justify-end">
+                                                        {[1,2,3,4,5].map(s => <Star key={s} size={10} className={s <= drink.rating ? 'fill-pink-400 text-pink-400' : 'text-pink-100'} />)}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {drink.comment && <div className="mt-3 bg-pink-50/50 p-3 rounded-2xl text-xs text-pink-600 border-l-4 border-pink-300 italic">“ {drink.comment} ”</div>}
+                                            <div className="flex justify-between items-center pt-3 mt-3 border-t border-pink-50">
+                                                <span className="text-[10px] font-bold text-pink-300 uppercase flex items-center gap-1"><Calendar size={12} /> {drink.date}</span>
+                                                <button onClick={() => deleteDrink(drink.id)} className="text-pink-200 hover:text-rose-500 transition-all p-2 rounded-full hover:bg-rose-50"><Trash2 size={16} /></button>
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        ) : (
+                            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                <div className="bg-pink-500 rounded-[3rem] p-8 text-white shadow-2xl shadow-pink-100 relative overflow-hidden mb-6">
+                                    <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-pink-400/50 rounded-full blur-3xl"></div>
+                                    <div className="relative z-10">
+                                        <p className="text-pink-100 text-sm font-bold mb-1 uppercase tracking-widest opacity-80">Yearly Report</p>
+                                        <div className="text-5xl font-black tracking-tighter mb-2">${stats.totalPrice}</div>
+                                        <p className="text-pink-100 text-[10px] font-bold uppercase tracking-widest bg-white/20 inline-block px-3 py-1 rounded-full">平均每杯 ${stats.avgPrice}</p>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="bg-white p-6 rounded-[2.5rem] border border-pink-50 text-center">
+                                        <p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1">平均評分</p>
+                                        <div className="flex items-center justify-center gap-2"><span className="text-3xl font-black text-pink-500">{stats.avgRating}</span><Star size={20} className="fill-pink-400 text-pink-400" /></div>
+                                    </div>
+                                    <div className="bg-white p-6 rounded-[2.5rem] border border-pink-50">
+                                        <p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1">消費總量</p>
+                                        <p className="text-lg font-black text-slate-800">{stats.totalCount} 次紀錄</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
-                    <div className="text-right">
-                      <p className="font-black text-xl text-pink-500 tracking-tighter">${drink.price}</p>
-                      <div className="flex gap-0.5 mt-1 justify-end">
-                        {[1,2,3,4,5].map(s => (
-                          <Star key={s} size={10} className={`${s <= drink.rating ? 'fill-pink-400 text-pink-400' : 'text-pink-100'}`} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {drink.comment && (
-                    <div className="bg-pink-50/50 p-3 rounded-2xl text-xs text-pink-600 font-medium mb-3 border-l-4 border-pink-300">
-                      “ {drink.comment} ”
-                    </div>
-                  )}
 
-                  <div className="flex justify-between items-center pt-3 border-t border-pink-50">
-                    <span className="text-[10px] font-bold text-pink-300 flex items-center gap-1.5 uppercase">
-                      <Calendar size={12} /> {drink.date}
-                    </span>
-                    <button 
-                      onClick={() => deleteDrink(drink.id)}
-                      className="text-pink-200 hover:text-rose-500 p-2 hover:bg-rose-50 rounded-full transition-all"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        ) : (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-             <div className="bg-pink-500 rounded-[3rem] p-8 text-white shadow-2xl shadow-pink-100 relative overflow-hidden mb-6">
-                <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-pink-400/50 rounded-full blur-3xl"></div>
-                <div className="relative z-10">
-                  <div className="flex justify-between items-center mb-10">
-                    <span className="bg-pink-400/50 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Yearly Report</span>
-                    <BarChart3 size={24} className="opacity-50" />
-                  </div>
-                  <p className="text-pink-100 text-sm font-bold mb-1">2026 年度累計支出</p>
-                  <div className="text-5xl font-black tracking-tighter mb-2">${stats.totalPrice}</div>
-                  <p className="text-pink-100 text-[10px] font-bold uppercase tracking-widest">Average ${stats.avgPrice} per cup</p>
-                </div>
-             </div>
-
-             <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-pink-50">
-                  <p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1">平均評分</p>
-                  <div className="flex items-center gap-2">
-                    <span className="text-3xl font-black text-pink-500 tracking-tighter">{stats.avgRating}</span>
-                    <Star size={20} className="fill-pink-400 text-pink-400" />
-                  </div>
-                </div>
-                <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-pink-50 flex items-center justify-between">
-                  <div>
-                    <p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1">消費總量</p>
-                    <p className="text-sm font-black text-slate-800">{stats.totalCount} 次紀錄</p>
-                  </div>
-                  <ChevronRight size={16} className="text-pink-100" />
-                </div>
-             </div>
-          </div>
-        )}
-      </div>
-
-      {/* 底部導覽 */}
-      <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/90 backdrop-blur-xl border border-pink-100 rounded-[2.5rem] px-8 py-3 flex justify-between items-center z-40 shadow-2xl shadow-pink-100/50">
-        <button 
-          onClick={() => setActiveTab('history')}
-          className={`flex flex-col items-center gap-1 transition-all ${activeTab === 'history' ? 'text-pink-600 scale-110' : 'text-pink-200 hover:text-pink-400'}`}
-        >
-          <History size={24} strokeWidth={activeTab === 'history' ? 3 : 2} />
-          <span className="text-[10px] font-bold uppercase tracking-tighter">紀錄</span>
-        </button>
-        
-        <button 
-          onClick={() => setIsModalOpen(true)}
-          className="bg-pink-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center -mt-12 shadow-xl shadow-pink-200 border-4 border-white active:scale-90 transition-all hover:rotate-6"
-        >
-          <Plus size={32} strokeWidth={3} />
-        </button>
-        
-        <button 
-          onClick={() => setActiveTab('stats')}
-          className={`flex flex-col items-center gap-1 transition-all ${activeTab === 'stats' ? 'text-pink-600 scale-110' : 'text-pink-200 hover:text-pink-400'}`}
-        >
-          <BarChart3 size={24} strokeWidth={activeTab === 'stats' ? 3 : 2} />
-          <span className="text-[10px] font-bold uppercase tracking-tighter">分析</span>
-        </button>
-      </nav>
-
-      {/* 捷徑教學 Modal */}
-      {isGuideOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
-          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={() => setIsGuideOpen(false)}></div>
-          <div className="bg-white w-full max-w-sm rounded-[3rem] p-8 relative z-10 animate-in zoom-in-95 duration-300">
-            <h2 className="text-xl font-black text-pink-600 mb-6 flex items-center gap-2">
-              <Smartphone size={24} />
-              設為手機捷徑
-            </h2>
-            <div className="space-y-6">
-              <div className="flex gap-4 items-start">
-                <div className="w-8 h-8 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 font-black shrink-0">1</div>
-                <div>
-                  <p className="font-bold text-slate-800">點擊瀏覽器選單</p>
-                  <p className="text-sm text-slate-500">iPhone 請點 Safari 下方的 <Share size={14} className="inline mx-1" /> 按鈕。</p>
-                </div>
-              </div>
-              <div className="flex gap-4 items-start">
-                <div className="w-8 h-8 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 font-black shrink-0">2</div>
-                <div>
-                  <p className="font-bold text-slate-800">加入主畫面</p>
-                  <p className="text-sm text-slate-500">在選項中找到「加入主畫面」，點擊「新增」。</p>
-                </div>
-              </div>
-              <div className="bg-pink-50 p-4 rounded-2xl">
-                <p className="text-xs text-pink-600 font-bold text-center italic">
-                  這樣你的桌面上就會出現一個粉紅圖示，點一下就能直接開始紀錄囉！
-                </p>
-              </div>
-            </div>
-            <button 
-              onClick={() => setIsGuideOpen(false)}
-              className="w-full bg-pink-500 text-white font-black py-4 rounded-2xl mt-8 shadow-lg shadow-pink-100"
-            >
-              我知道了！
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* 新增紀錄 Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
-          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-300" onClick={() => setIsModalOpen(false)}></div>
-          <div className="bg-white w-full max-w-lg rounded-t-[3.5rem] sm:rounded-[3.5rem] p-8 relative z-10 max-h-[95vh] overflow-y-auto animate-in slide-in-from-bottom-full duration-500 ease-out">
-            <div className="flex justify-between items-center mb-8">
-              <div>
-                <h2 className="text-2xl font-black text-pink-600 tracking-tight">今天的飲料紀錄</h2>
-                <p className="text-pink-300 text-xs font-bold uppercase tracking-widest mt-0.5">New Entry</p>
-              </div>
-              <button onClick={() => setIsModalOpen(false)} className="bg-pink-50 p-3 rounded-2xl text-pink-300 hover:bg-pink-100 transition-colors">
-                <X size={20} />
-              </button>
-            </div>
-            
-            <form onSubmit={handleAddDrink} className="space-y-8">
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 gap-4">
-                  <input 
-                    name="shop"
-                    required
-                    placeholder="哪家飲料店？"
-                    className="w-full bg-pink-50/50 border-2 border-transparent rounded-[1.5rem] px-6 py-4 font-bold text-slate-800 placeholder:text-pink-200 focus:bg-white focus:border-pink-200 transition-all outline-none"
-                    value={formData.shop}
-                    onChange={handleInputChange}
-                  />
-                  <input 
-                    name="item"
-                    required
-                    placeholder="點了什麼品項？"
-                    className="w-full bg-pink-50/50 border-2 border-transparent rounded-[1.5rem] px-6 py-4 font-bold text-slate-800 placeholder:text-pink-200 focus:bg-white focus:border-pink-200 transition-all outline-none"
-                    value={formData.item}
-                    onChange={handleInputChange}
-                  />
-                </div>
-
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black text-pink-300 uppercase tracking-widest px-2">甜度選擇</label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {SWEETNESS_OPTIONS.map(opt => (
-                      <button
-                        key={opt}
-                        type="button"
-                        onClick={() => setFormData(p => ({...p, sweetness: opt}))}
-                        className={`py-3 rounded-2xl text-xs font-black transition-all ${formData.sweetness === opt ? 'bg-pink-500 text-white shadow-lg shadow-pink-100' : 'bg-pink-50/50 text-pink-300 hover:bg-pink-100'}`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black text-pink-300 uppercase tracking-widest px-2">冰塊選擇</label>
-                  <div className="flex flex-wrap gap-2">
-                    {ICE_OPTIONS.map(opt => (
-                      <button
-                        key={opt}
-                        type="button"
-                        onClick={() => setFormData(p => ({...p, ice: opt}))}
-                        className={`px-5 py-3 rounded-2xl text-xs font-black transition-all ${formData.ice === opt ? 'bg-pink-500 text-white shadow-lg shadow-pink-100' : 'bg-pink-50/50 text-pink-300 hover:bg-pink-100'}`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black text-pink-300 uppercase tracking-widest px-2">價格</label>
-                    <div className="relative">
-                      <span className="absolute left-5 top-1/2 -translate-y-1/2 font-black text-pink-200">$</span>
-                      <input 
-                        name="price"
-                        type="number"
-                        required
-                        className="w-full bg-pink-50/50 border-2 border-transparent rounded-2xl pl-10 pr-6 py-4 font-black text-slate-800 focus:bg-white focus:border-pink-200 transition-all outline-none"
-                        value={formData.price}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black text-pink-300 uppercase tracking-widest px-2">日期</label>
-                    <input 
-                      name="date"
-                      type="date"
-                      required
-                      className="w-full bg-pink-50/50 border-2 border-transparent rounded-2xl px-6 py-4 font-bold text-slate-800 focus:bg-white focus:border-pink-200 transition-all outline-none"
-                      value={formData.date}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-4 pt-4">
-                  <div className="flex justify-between items-center px-2">
-                    <label className="text-[10px] font-black text-pink-300 uppercase tracking-widest">整體評價</label>
-                    <div className="flex gap-1 items-center">
-                      <span className="text-lg font-black text-pink-500 mr-2">{formData.rating}</span>
-                       {[1,2,3,4,5].map(s => (
-                         <Star key={s} size={18} className={`${s <= formData.rating ? 'fill-pink-400 text-pink-400' : 'text-pink-50'}`} />
-                       ))}
-                    </div>
-                  </div>
-                  <input 
-                    type="range"
-                    min="1"
-                    max="5"
-                    step="1"
-                    className="w-full h-3 bg-pink-50 rounded-full appearance-none cursor-pointer accent-pink-500"
-                    value={formData.rating}
-                    onChange={(e) => setFormData(prev => ({...prev, rating: parseInt(e.target.value)}))}
-                  />
-                </div>
-
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black text-pink-300 uppercase tracking-widest px-2">心得筆記</label>
-                  <textarea 
-                    name="comment"
-                    placeholder="這杯飲料的味道如何？"
-                    className="w-full bg-pink-50/50 border-2 border-transparent rounded-[1.5rem] px-6 py-4 font-medium text-slate-800 placeholder:text-pink-200 focus:bg-white focus:border-pink-200 transition-all outline-none resize-none h-24"
-                    value={formData.comment}
-                    onChange={handleInputChange}
-                  ></textarea>
-                </div>
-              </div>
-
-              <button 
-                type="submit"
-                className="w-full bg-pink-500 text-white font-black py-5 rounded-[1.5rem] shadow-xl shadow-pink-100 active:scale-[0.98] hover:bg-pink-600 transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-sm"
-              >
-                <Check size={20} />
-                儲存日誌
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default App;
+                    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/90 backdrop-blur-xl border border-pink-100 rounded-[2.5rem] px-8 py-3 flex justify-between items-center z-40 shadow-2xl">
+                        <button onClick={() => setActiveTab('history')} className={`flex flex-col items-center gap-1 transition-all ${activeTab === 'history' ? 'text-pink-600 scale-110 font-bold' : 'text-pink-200'}`}>
+                            <History size={24} strokeWidth={activeTab === 'history' ? 3 : 2} /><span className="text-[10px] uppercase tracking-tighter">紀錄</span>
+                        </button>
+                        <button onClick={() => setIsModalOpen(true)} className="bg-pink-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center -mt-12 shadow-xl border-4 border-white active:scale-90 transition-transform"><Plus size={32} strokeWidth={3} /></button>
+                        <button onClick={() => setActiveTab('stats')} className={`flex flex-col items-center gap-1 transition-all ${activeTab === 'stats' ? 'text-pink-600 scale-110 font-bold' : 'text-pink-200'}`}>
+                            <BarChart3 size={24} strokeWidth={activeTab === 'stats' ? 3 : 2} /><span className="text-[10px] uppercase tracking-tighter">分析</span>
+                        </button>

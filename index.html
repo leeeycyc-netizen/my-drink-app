@@ -1,282 +1,249 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6d6d6d; -webkit-text-stroke: #6d6d6d}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #0000ff; -webkit-text-stroke: #0000ff}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6b0001; -webkit-text-stroke: #6b0001}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #fb0007; -webkit-text-stroke: #fb0007}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #4d5055; -webkit-text-stroke: #4d5055}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #18702b; -webkit-text-stroke: #18702b}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000; min-height: 16.0px}
-    span.s1 {font-kerning: none; background-color: #ecf1f7}
-    span.s2 {font-kerning: none; color: #fb0007; background-color: #ecf1f7; -webkit-text-stroke: 0px #fb0007}
-    span.s3 {font-kerning: none; color: #2a2a2a; background-color: #ecf1f7; -webkit-text-stroke: 0px #2a2a2a}
-    span.s4 {font-kerning: none; color: #6b0001; background-color: #ecf1f7; -webkit-text-stroke: 0px #6b0001}
-    span.s5 {font-kerning: none; color: #000000; background-color: #ecf1f7; -webkit-text-stroke: 0px #000000}
-    span.s6 {font-kerning: none; color: #0000ff; background-color: #ecf1f7; -webkit-text-stroke: 0px #0000ff}
-    span.s7 {font-kerning: none; color: #6f0ec3; background-color: #ecf1f7; -webkit-text-stroke: 0px #6f0ec3}
-    span.s8 {font-kerning: none; color: #093c94; background-color: #ecf1f7; -webkit-text-stroke: 0px #093c94}
-    span.s9 {font-kerning: none; color: #18702b; background-color: #ecf1f7; -webkit-text-stroke: 0px #18702b}
-    span.s10 {font-kerning: none; color: #137646; background-color: #ecf1f7; -webkit-text-stroke: 0px #137646}
-    span.s11 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超愛喝飲料</title>
+    <!-- 引入 React 與 Babel (用於執行 JSX) -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide-react@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #ec4899;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+        }
+    </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE</span><span class="s2"> html</span><span class="s1">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s4">html</span><span class="s5"> </span><span class="s2">lang</span><span class="s3">=</span><span class="s1">"zh-TW"</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s3">&lt;</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">meta</span><span class="s5"> </span><span class="s1">charset</span><span class="s3">=</span><span class="s6">"UTF-8"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">meta</span><span class="s5"> </span><span class="s2">name</span><span class="s3">=</span><span class="s1">"viewport"</span><span class="s5"> </span><span class="s2">content</span><span class="s3">=</span><span class="s1">"width=device-width, initial-scale=1.0"</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">title</span><span class="s3">&gt;</span><span class="s5">超愛喝飲料</span><span class="s3">&lt;/</span><span class="s1">title</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- 引入 React 與 Babel (用於執行 JSX) --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://unpkg.com/react@18/umd/react.development.js"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://unpkg.com/react-dom@18/umd/react-dom.development.js"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://unpkg.com/@babel/standalone/babel.min.js"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- 引入 Tailwind CSS --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://cdn.tailwindcss.com"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s1">&lt;!-- 引入 Lucide Icons --&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://unpkg.com/lucide@latest"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://unpkg.com/lucide-react@latest"</span><span class="s3">&gt;&lt;/</span><span class="s4">script</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s7">@import</span><span class="s5"> </span><span class="s8">url</span><span class="s5">(</span><span class="s1">'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap'</span><span class="s5">);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s4">body</span><span class="s1"> { </span><span class="s2">font-family:</span><span class="s1"> </span><span class="s9">'Noto Sans TC'</span><span class="s1">, </span><span class="s8">sans-serif</span><span class="s1">; }</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">        </span></span><span class="s1">input</span><span class="s5">[</span><span class="s8">type</span><span class="s5">=</span><span class="s9">"range"</span><span class="s5">]</span><span class="s1">::-webkit-slider-thumb</span><span class="s5"> {</span></p>
-<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s1">-webkit-appearance:</span><span class="s5"> </span><span class="s8">none</span><span class="s5">;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">height:</span><span class="s1"> </span><span class="s10">24px</span><span class="s1">;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">width:</span><span class="s1"> </span><span class="s10">24px</span><span class="s1">;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">border-radius:</span><span class="s1"> </span><span class="s10">50%</span><span class="s1">;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">background:</span><span class="s1"> </span><span class="s8">#ec4899</span><span class="s1">;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">cursor:</span><span class="s1"> </span><span class="s8">pointer</span><span class="s1">;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">box-shadow:</span><span class="s1"> </span><span class="s10">0</span><span class="s1"> </span><span class="s10">0</span><span class="s1"> </span><span class="s10">10px</span><span class="s1"> </span><span class="s8">rgba(</span><span class="s10">236</span><span class="s1">, </span><span class="s10">72</span><span class="s1">, </span><span class="s10">153</span><span class="s1">, </span><span class="s10">0.3</span><span class="s8">)</span><span class="s1">;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s3">&lt;/</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s3">&lt;</span><span class="s1">body</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">div</span><span class="s5"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"root"</span><span class="s3">&gt;&lt;/</span><span class="s4">div</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p2"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s4">script</span><span class="s5"> </span><span class="s2">type</span><span class="s3">=</span><span class="s1">"text/babel"</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>const { useState, useEffect, useMemo } = React;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>const {<span class="Apple-converted-space"> </span></span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>Plus, History, BarChart3, Coffee, Star, Trash2, X,<span class="Apple-converted-space"> </span></span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>TrendingUp, Heart, Calendar, Check, Award,<span class="Apple-converted-space"> </span></span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>ChevronRight, Smartphone, Share, ShoppingBag, ListChecks<span class="Apple-converted-space"> </span></span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>} = lucideReact;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>const STORAGE_KEY = 'drink_log_2026_pink_v4';</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>const SWEETNESS_OPTIONS = ['無糖', '1分', '微糖', '半糖', '少糖', '正常'];</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>const ICE_OPTIONS = ['去冰', '微冰', '少冰', '正常', '熱飲'];</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>const App = () =&gt; {</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>const [drinks, setDrinks] = useState([]);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>const [isModalOpen, setIsModalOpen] = useState(false);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>const [isGuideOpen, setIsGuideOpen] = useState(false);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>const [activeTab, setActiveTab] = useState('history');</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>const [formData, setFormData] = useState({</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>shop: '', item: '', sweetness: '半糖', ice: '少冰',</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>price: '', rating: 5, comment: '',</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>date: new Date().toISOString().split('T')[0]</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>useEffect(() =&gt; {</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>const saved = localStorage.getItem(STORAGE_KEY);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>if (saved) {</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>try { setDrinks(JSON.parse(saved)); } catch (e) { console.error(e); }</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>}, []);</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>useEffect(() =&gt; {</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>localStorage.setItem(STORAGE_KEY, JSON.stringify(drinks));</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>}, [drinks]);</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>const stats = useMemo(() =&gt; {</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>const totalCount = drinks.length;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>const totalPrice = drinks.reduce((sum, d) =&gt; sum + (Number(d.price) || 0), 0);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>const avgPrice = totalCount &gt; 0 ? Math.round(totalPrice / totalCount) : 0;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>const avgRating = totalCount &gt; 0 ? (drinks.reduce((sum, d) =&gt; sum + d.rating, 0) / totalCount).toFixed(1) : 0;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>return { totalCount, totalPrice, avgPrice, avgRating };</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>}, [drinks]);</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>const handleInputChange = (e) =&gt; {</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>const { name, value } = e.target;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>setFormData(prev =&gt; ({ ...prev, [name]: value }));</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>const handleAddDrink = (e) =&gt; {</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>e.preventDefault();</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>if (!formData.shop || !formData.item || !formData.price) return;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>const newDrink = { ...formData, id: Date.now() };</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>setDrinks([newDrink, ...drinks]);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>setIsModalOpen(false);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>setFormData({</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>shop: '', item: '', sweetness: '半糖', ice: '少冰',</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>price: '', rating: 5, comment: '',</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>date: new Date().toISOString().split('T')[0]</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>});</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>const deleteDrink = (id) =&gt; {</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>setDrinks(drinks.filter(d =&gt; d.id !== id));</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>};</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>return (</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div className="min-h-screen bg-[#FFF5F7] text-slate-900 pb-28"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md px-6 pt-12 pb-6 border-b border-pink-50"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="flex justify-between items-center max-w-2xl mx-auto"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;h1 className="text-2xl font-black text-pink-600 flex items-center gap-2"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>超愛喝飲料 &lt;Heart className="fill-pink-500 text-pink-500" size={20} /&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/h1&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p className="text-pink-400 text-[10px] font-black uppercase tracking-widest"&gt;Beverage Lover&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;button onClick={() =&gt; setIsGuideOpen(true)} className="w-10 h-10 bg-pink-50 text-pink-500 rounded-xl flex items-center justify-center"&gt;&lt;Smartphone size={20} /&gt;&lt;/button&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/header&gt;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;div className="max-w-2xl mx-auto px-6 mt-6"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;section className="grid grid-cols-2 gap-4 mb-8"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="bg-white p-5 rounded-[2rem] shadow-sm border border-pink-50"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1"&gt;Total Spent&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="text-3xl font-black text-pink-500 tracking-tighter"&gt;${stats.totalPrice}&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="mt-3 flex items-center gap-1 text-[10px] font-bold text-pink-400"&gt;&lt;ShoppingBag size={12} /&gt;&lt;span&gt;支出明細&lt;/span&gt;&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="bg-white p-5 rounded-[2rem] shadow-sm border border-pink-50"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;p className="text-amber-300 text-[10px] font-black uppercase tracking-widest mb-1"&gt;Cup Count&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="text-3xl font-black text-amber-500 tracking-tighter"&gt;{stats.totalCount} &lt;span className="text-xs"&gt;杯&lt;/span&gt;&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="mt-3 flex items-center gap-1 text-[10px] font-bold text-amber-500"&gt;&lt;ListChecks size={12} /&gt;&lt;span&gt;飲用統計&lt;/span&gt;&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/section&gt;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>{activeTab === 'history' ? (</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="space-y-4"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>{drinks.length === 0 ? (</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="bg-white rounded-[2.5rem] p-12 text-center border-2 border-dashed border-pink-100 text-pink-300 font-bold"&gt;還沒有紀錄喔！點下方的 + 開始&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>) : (</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>drinks.map(drink =&gt; (</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;div key={drink.id} className="bg-white p-5 rounded-[2.5rem] border border-pink-50"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex justify-between items-start"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                </span>&lt;div className="flex gap-4"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                    </span>&lt;div className="w-14 h-14 bg-pink-50 rounded-3xl flex items-center justify-center text-pink-400"&gt;&lt;Coffee size={24} /&gt;&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                    </span>&lt;div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                        </span>&lt;h3 className="font-black text-slate-800 text-lg"&gt;{drink.shop}&lt;/h3&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                        </span>&lt;p className="text-slate-500 text-sm"&gt;{drink.item}&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                        </span>&lt;div className="flex gap-2 mt-2"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                            </span>&lt;span className="text-[10px] font-bold px-3 py-1 bg-pink-50 rounded-full text-pink-500"&gt;{drink.sweetness}&lt;/span&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                            </span>&lt;span className="text-[10px] font-bold px-3 py-1 bg-pink-50 rounded-full text-pink-500"&gt;{drink.ice}&lt;/span&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                        </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                    </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                </span>&lt;div className="text-right"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                    </span>&lt;p className="font-black text-xl text-pink-500"&gt;${drink.price}&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                    </span>&lt;div className="flex gap-0.5 mt-1 justify-end"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                        </span>{[1,2,3,4,5].map(s =&gt; &lt;Star key={s} size={10} className={s &lt;= drink.rating ? 'fill-pink-400 text-pink-400' : 'text-pink-100'} /&gt;)}</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                    </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                            </span>{drink.comment &amp;&amp; &lt;div className="mt-3 bg-pink-50/50 p-3 rounded-2xl text-xs text-pink-600 border-l-4 border-pink-300"&gt;“ {drink.comment} ”&lt;/div&gt;}</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex justify-between items-center pt-3 mt-3 border-t border-pink-50"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                </span>&lt;span className="text-[10px] font-bold text-pink-300 uppercase flex items-center gap-1"&gt;&lt;Calendar size={12} /&gt; {drink.date}&lt;/span&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                                </span>&lt;button onClick={() =&gt; deleteDrink(drink.id)} className="text-pink-200 hover:text-rose-500 transition-all"&gt;&lt;Trash2 size={16} /&gt;&lt;/button&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>))</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>)}</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>) : (</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="animate-in fade-in slide-in-from-bottom-4 duration-500"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="bg-pink-500 rounded-[3rem] p-8 text-white shadow-2xl shadow-pink-100 relative overflow-hidden mb-6"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="absolute -right-10 -bottom-10 w-40 h-40 bg-pink-400/50 rounded-full blur-3xl"&gt;&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="relative z-10"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;p className="text-pink-100 text-sm font-bold mb-1 uppercase tracking-widest"&gt;Yearly Report&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;div className="text-5xl font-black tracking-tighter mb-2"&gt;${stats.totalPrice}&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;p className="text-pink-100 text-[10px] font-bold uppercase tracking-widest"&gt;Average ${stats.avgPrice} per cup&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="grid grid-cols-2 gap-4"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="bg-white p-6 rounded-[2.5rem] border border-pink-50 text-center"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1"&gt;平均評分&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;div className="flex items-center justify-center gap-2"&gt;&lt;span className="text-3xl font-black text-pink-500"&gt;{stats.avgRating}&lt;/span&gt;&lt;Star size={20} className="fill-pink-400 text-pink-400" /&gt;&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="bg-white p-6 rounded-[2.5rem] border border-pink-50"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1"&gt;消費總量&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;p className="text-sm font-black text-slate-800"&gt;{stats.totalCount} 次紀錄&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>)}</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;nav className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/90 backdrop-blur-xl border border-pink-100 rounded-[2.5rem] px-8 py-3 flex justify-between items-center z-40 shadow-2xl"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button onClick={() =&gt; setActiveTab('history')} className={`flex flex-col items-center gap-1 ${activeTab === 'history' ? 'text-pink-600' : 'text-pink-200'}`}&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;History size={24} /&gt;&lt;span className="text-[10px] font-bold uppercase tracking-tighter"&gt;紀錄&lt;/span&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button onClick={() =&gt; setIsModalOpen(true)} className="bg-pink-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center -mt-12 shadow-xl border-4 border-white"&gt;&lt;Plus size={32} /&gt;&lt;/button&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;button onClick={() =&gt; setActiveTab('stats')} className={`flex flex-col items-center gap-1 ${activeTab === 'stats' ? 'text-pink-600' : 'text-pink-200'}`}&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;BarChart3 size={24} /&gt;&lt;span className="text-[10px] font-bold uppercase tracking-tighter"&gt;分析&lt;/span&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/nav&gt;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>{isGuideOpen &amp;&amp; (</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="bg-white w-full max-w-sm rounded-[3rem] p-8 animate-in zoom-in-95 duration-300"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;h2 className="text-xl font-black text-pink-600 mb-6 flex items-center gap-2"&gt;&lt;Smartphone size={24} /&gt; 設為手機捷徑&lt;/h2&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="space-y-6"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="flex gap-4"&gt;&lt;div className="w-8 h-8 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 font-black shrink-0"&gt;1&lt;/div&gt;&lt;p className="text-sm text-slate-600"&gt;&lt;span className="font-bold text-slate-800"&gt;點擊分享選單&lt;/span&gt;&lt;br/&gt;iPhone 請點 Safari 下方的分享圖示。&lt;/p&gt;&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="flex gap-4"&gt;&lt;div className="w-8 h-8 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 font-black shrink-0"&gt;2&lt;/div&gt;&lt;p className="text-sm text-slate-600"&gt;&lt;span className="font-bold text-slate-800"&gt;加入主畫面&lt;/span&gt;&lt;br/&gt;找到「加入主畫面」並點擊新增。&lt;/p&gt;&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;button onClick={() =&gt; setIsGuideOpen(false)} className="w-full bg-pink-500 text-white font-black py-4 rounded-2xl mt-8"&gt;我知道了！&lt;/button&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>)}</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>{isModalOpen &amp;&amp; (</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/40 backdrop-blur-sm"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;div className="bg-white w-full max-w-lg rounded-t-[3.5rem] p-8 max-h-[95vh] overflow-y-auto animate-in slide-in-from-bottom-full duration-500"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;div className="flex justify-between items-center mb-8"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;h2 className="text-2xl font-black text-pink-600 tracking-tight"&gt;今天的飲料紀錄&lt;/h2&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;button onClick={() =&gt; setIsModalOpen(false)} className="bg-pink-50 p-3 rounded-2xl text-pink-300"&gt;&lt;X size={20} /&gt;&lt;/button&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;form onSubmit={handleAddDrink} className="space-y-6"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;input name="shop" required placeholder="哪家飲料店？" className="w-full bg-pink-50/50 rounded-[1.5rem] px-6 py-4 font-bold outline-none border-2 border-transparent focus:border-pink-200" value={formData.shop} onChange={handleInputChange} /&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;input name="item" required placeholder="點了什麼品項？" className="w-full bg-pink-50/50 rounded-[1.5rem] px-6 py-4 font-bold outline-none border-2 border-transparent focus:border-pink-200" value={formData.item} onChange={handleInputChange} /&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="space-y-2"&gt;&lt;p className="text-[10px] font-black text-pink-300 uppercase px-2 tracking-widest"&gt;甜度&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;div className="grid grid-cols-3 gap-2"&gt;{SWEETNESS_OPTIONS.map(opt =&gt; (</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;button key={opt} type="button" onClick={() =&gt; setFormData(p =&gt; ({...p, sweetness: opt}))} className={`py-3 rounded-2xl text-xs font-black transition-all ${formData.sweetness === opt ? 'bg-pink-500 text-white shadow-lg' : 'bg-pink-50/50 text-pink-300'}`}&gt;{opt}&lt;/button&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>))}&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="space-y-2"&gt;&lt;p className="text-[10px] font-black text-pink-300 uppercase px-2 tracking-widest"&gt;冰塊&lt;/p&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;div className="flex flex-wrap gap-2"&gt;{ICE_OPTIONS.map(opt =&gt; (</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                            </span>&lt;button key={opt} type="button" onClick={() =&gt; setFormData(p =&gt; ({...p, ice: opt}))} className={`px-5 py-3 rounded-2xl text-xs font-black transition-all ${formData.ice === opt ? 'bg-pink-500 text-white shadow-lg' : 'bg-pink-50/50 text-pink-300'}`}&gt;{opt}&lt;/button&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>))}&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="grid grid-cols-2 gap-4"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;input name="price" type="number" required placeholder="價格 $" className="w-full bg-pink-50/50 rounded-2xl px-6 py-4 font-black outline-none border-2 border-transparent focus:border-pink-200" value={formData.price} onChange={handleInputChange} /&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;input name="date" type="date" required className="w-full bg-pink-50/50 rounded-2xl px-6 py-4 font-bold outline-none border-2 border-transparent focus:border-pink-200" value={formData.date} onChange={handleInputChange} /&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;div className="space-y-4 pt-4"&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;div className="flex justify-between px-2 text-[10px] font-black text-pink-300 uppercase"&gt;評價 ({formData.rating}) &lt;div className="flex gap-1"&gt;{[1,2,3,4,5].map(s =&gt; &lt;Star key={s} size={14} className={s &lt;= formData.rating ? 'fill-pink-400 text-pink-400' : 'text-pink-50'} /&gt;)}&lt;/div&gt;&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                        </span>&lt;input type="range" min="1" max="5" step="1" className="w-full h-3 bg-pink-50 rounded-full appearance-none accent-pink-500" value={formData.rating} onChange={(e) =&gt; setFormData(prev =&gt; ({...prev, rating: parseInt(e.target.value)}))} /&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;textarea name="comment" placeholder="這杯味道如何？" className="w-full bg-pink-50/50 rounded-[1.5rem] px-6 py-4 font-medium outline-none h-24 border-2 border-transparent focus:border-pink-200" value={formData.comment} onChange={handleInputChange}&gt;&lt;/textarea&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                    </span>&lt;button type="submit" className="w-full bg-pink-500 text-white font-black py-5 rounded-[1.5rem] shadow-xl hover:bg-pink-600 active:scale-95 transition-all flex items-center justify-center gap-2"&gt;&lt;Check size={20} /&gt; 儲存日誌&lt;/button&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                                </span>&lt;/form&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                    </span>)}</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">            </span>);</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>const root = ReactDOM.createRoot(document.getElementById('root'));</span></p>
-<p class="p7"><span class="s1"><span class="Apple-converted-space">        </span>root.render(&lt;App /&gt;);</span></p>
-<p class="p3"><span class="s5"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s3">&lt;/</span><span class="s1">body</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s3">&lt;/</span><span class="s1">html</span><span class="s3">&gt;</span></p>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+        const { 
+            Plus, History, BarChart3, Coffee, Star, Trash2, X, 
+            TrendingUp, Heart, Calendar, Check, Award, 
+            ChevronRight, Smartphone, Share, ShoppingBag, ListChecks 
+        } = lucideReact;
+
+        const STORAGE_KEY = 'drink_log_2026_pink_v4';
+        const SWEETNESS_OPTIONS = ['無糖', '1分', '微糖', '半糖', '少糖', '正常'];
+        const ICE_OPTIONS = ['去冰', '微冰', '少冰', '正常', '熱飲'];
+
+        const App = () => {
+            const [drinks, setDrinks] = useState([]);
+            const [isModalOpen, setIsModalOpen] = useState(false);
+            const [isGuideOpen, setIsGuideOpen] = useState(false);
+            const [activeTab, setActiveTab] = useState('history');
+            const [formData, setFormData] = useState({
+                shop: '', item: '', sweetness: '半糖', ice: '少冰',
+                price: '', rating: 5, comment: '',
+                date: new Date().toISOString().split('T')[0]
+            });
+
+            useEffect(() => {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    try { setDrinks(JSON.parse(saved)); } catch (e) { console.error(e); }
+                }
+            }, []);
+
+            useEffect(() => {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(drinks));
+            }, [drinks]);
+
+            const stats = useMemo(() => {
+                const totalCount = drinks.length;
+                const totalPrice = drinks.reduce((sum, d) => sum + (Number(d.price) || 0), 0);
+                const avgPrice = totalCount > 0 ? Math.round(totalPrice / totalCount) : 0;
+                const avgRating = totalCount > 0 ? (drinks.reduce((sum, d) => sum + d.rating, 0) / totalCount).toFixed(1) : 0;
+                return { totalCount, totalPrice, avgPrice, avgRating };
+            }, [drinks]);
+
+            const handleInputChange = (e) => {
+                const { name, value } = e.target;
+                setFormData(prev => ({ ...prev, [name]: value }));
+            };
+
+            const handleAddDrink = (e) => {
+                e.preventDefault();
+                if (!formData.shop || !formData.item || !formData.price) return;
+                const newDrink = { ...formData, id: Date.now() };
+                setDrinks([newDrink, ...drinks]);
+                setIsModalOpen(false);
+                setFormData({
+                    shop: '', item: '', sweetness: '半糖', ice: '少冰',
+                    price: '', rating: 5, comment: '',
+                    date: new Date().toISOString().split('T')[0]
+                });
+            };
+
+            const deleteDrink = (id) => {
+                setDrinks(drinks.filter(d => d.id !== id));
+            };
+
+            return (
+                <div className="min-h-screen bg-[#FFF5F7] text-slate-900 pb-28">
+                    <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md px-6 pt-12 pb-6 border-b border-pink-50">
+                        <div className="flex justify-between items-center max-w-2xl mx-auto">
+                            <div>
+                                <h1 className="text-2xl font-black text-pink-600 flex items-center gap-2">
+                                    超愛喝飲料 <Heart className="fill-pink-500 text-pink-500" size={20} />
+                                </h1>
+                                <p className="text-pink-400 text-[10px] font-black uppercase tracking-widest">Beverage Lover</p>
+                            </div>
+                            <button onClick={() => setIsGuideOpen(true)} className="w-10 h-10 bg-pink-50 text-pink-500 rounded-xl flex items-center justify-center"><Smartphone size={20} /></button>
+                        </div>
+                    </header>
+
+                    <div className="max-w-2xl mx-auto px-6 mt-6">
+                        <section className="grid grid-cols-2 gap-4 mb-8">
+                            <div className="bg-white p-5 rounded-[2rem] shadow-sm border border-pink-50">
+                                <p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1">Total Spent</p>
+                                <div className="text-3xl font-black text-pink-500 tracking-tighter">${stats.totalPrice}</div>
+                                <div className="mt-3 flex items-center gap-1 text-[10px] font-bold text-pink-400"><ShoppingBag size={12} /><span>支出明細</span></div>
+                            </div>
+                            <div className="bg-white p-5 rounded-[2rem] shadow-sm border border-pink-50">
+                                <p className="text-amber-300 text-[10px] font-black uppercase tracking-widest mb-1">Cup Count</p>
+                                <div className="text-3xl font-black text-amber-500 tracking-tighter">{stats.totalCount} <span className="text-xs">杯</span></div>
+                                <div className="mt-3 flex items-center gap-1 text-[10px] font-bold text-amber-500"><ListChecks size={12} /><span>飲用統計</span></div>
+                            </div>
+                        </section>
+
+                        {activeTab === 'history' ? (
+                            <div className="space-y-4">
+                                {drinks.length === 0 ? (
+                                    <div className="bg-white rounded-[2.5rem] p-12 text-center border-2 border-dashed border-pink-100 text-pink-300 font-bold">還沒有紀錄喔！點下方的 + 開始</div>
+                                ) : (
+                                    drinks.map(drink => (
+                                        <div key={drink.id} className="bg-white p-5 rounded-[2.5rem] border border-pink-50">
+                                            <div className="flex justify-between items-start">
+                                                <div className="flex gap-4">
+                                                    <div className="w-14 h-14 bg-pink-50 rounded-3xl flex items-center justify-center text-pink-400"><Coffee size={24} /></div>
+                                                    <div>
+                                                        <h3 className="font-black text-slate-800 text-lg">{drink.shop}</h3>
+                                                        <p className="text-slate-500 text-sm">{drink.item}</p>
+                                                        <div className="flex gap-2 mt-2">
+                                                            <span className="text-[10px] font-bold px-3 py-1 bg-pink-50 rounded-full text-pink-500">{drink.sweetness}</span>
+                                                            <span className="text-[10px] font-bold px-3 py-1 bg-pink-50 rounded-full text-pink-500">{drink.ice}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="text-right">
+                                                    <p className="font-black text-xl text-pink-500">${drink.price}</p>
+                                                    <div className="flex gap-0.5 mt-1 justify-end">
+                                                        {[1,2,3,4,5].map(s => <Star key={s} size={10} className={s <= drink.rating ? 'fill-pink-400 text-pink-400' : 'text-pink-100'} />)}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {drink.comment && <div className="mt-3 bg-pink-50/50 p-3 rounded-2xl text-xs text-pink-600 border-l-4 border-pink-300">“ {drink.comment} ”</div>}
+                                            <div className="flex justify-between items-center pt-3 mt-3 border-t border-pink-50">
+                                                <span className="text-[10px] font-bold text-pink-300 uppercase flex items-center gap-1"><Calendar size={12} /> {drink.date}</span>
+                                                <button onClick={() => deleteDrink(drink.id)} className="text-pink-200 hover:text-rose-500 transition-all"><Trash2 size={16} /></button>
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        ) : (
+                            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                <div className="bg-pink-500 rounded-[3rem] p-8 text-white shadow-2xl shadow-pink-100 relative overflow-hidden mb-6">
+                                    <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-pink-400/50 rounded-full blur-3xl"></div>
+                                    <div className="relative z-10">
+                                        <p className="text-pink-100 text-sm font-bold mb-1 uppercase tracking-widest">Yearly Report</p>
+                                        <div className="text-5xl font-black tracking-tighter mb-2">${stats.totalPrice}</div>
+                                        <p className="text-pink-100 text-[10px] font-bold uppercase tracking-widest">Average ${stats.avgPrice} per cup</p>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="bg-white p-6 rounded-[2.5rem] border border-pink-50 text-center">
+                                        <p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1">平均評分</p>
+                                        <div className="flex items-center justify-center gap-2"><span className="text-3xl font-black text-pink-500">{stats.avgRating}</span><Star size={20} className="fill-pink-400 text-pink-400" /></div>
+                                    </div>
+                                    <div className="bg-white p-6 rounded-[2.5rem] border border-pink-50">
+                                        <p className="text-pink-300 text-[10px] font-black uppercase tracking-widest mb-1">消費總量</p>
+                                        <p className="text-sm font-black text-slate-800">{stats.totalCount} 次紀錄</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white/90 backdrop-blur-xl border border-pink-100 rounded-[2.5rem] px-8 py-3 flex justify-between items-center z-40 shadow-2xl">
+                        <button onClick={() => setActiveTab('history')} className={`flex flex-col items-center gap-1 ${activeTab === 'history' ? 'text-pink-600' : 'text-pink-200'}`}>
+                            <History size={24} /><span className="text-[10px] font-bold uppercase tracking-tighter">紀錄</span>
+                        </button>
+                        <button onClick={() => setIsModalOpen(true)} className="bg-pink-500 text-white w-14 h-14 rounded-2xl flex items-center justify-center -mt-12 shadow-xl border-4 border-white"><Plus size={32} /></button>
+                        <button onClick={() => setActiveTab('stats')} className={`flex flex-col items-center gap-1 ${activeTab === 'stats' ? 'text-pink-600' : 'text-pink-200'}`}>
+                            <BarChart3 size={24} /><span className="text-[10px] font-bold uppercase tracking-tighter">分析</span>
+                        </button>
+                    </nav>
+
+                    {isGuideOpen && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+                            <div className="bg-white w-full max-w-sm rounded-[3rem] p-8 animate-in zoom-in-95 duration-300">
+                                <h2 className="text-xl font-black text-pink-600 mb-6 flex items-center gap-2"><Smartphone size={24} /> 設為手機捷徑</h2>
+                                <div className="space-y-6">
+                                    <div className="flex gap-4"><div className="w-8 h-8 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 font-black shrink-0">1</div><p className="text-sm text-slate-600"><span className="font-bold text-slate-800">點擊分享選單</span><br/>iPhone 請點 Safari 下方的分享圖示。</p></div>
+                                    <div className="flex gap-4"><div className="w-8 h-8 bg-pink-50 rounded-full flex items-center justify-center text-pink-500 font-black shrink-0">2</div><p className="text-sm text-slate-600"><span className="font-bold text-slate-800">加入主畫面</span><br/>找到「加入主畫面」並點擊新增。</p></div>
+                                </div>
+                                <button onClick={() => setIsGuideOpen(false)} className="w-full bg-pink-500 text-white font-black py-4 rounded-2xl mt-8">我知道了！</button>
+                            </div>
+                        </div>
+                    )}
+
+                    {isModalOpen && (
+                        <div className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/40 backdrop-blur-sm">
+                            <div className="bg-white w-full max-w-lg rounded-t-[3.5rem] p-8 max-h-[95vh] overflow-y-auto animate-in slide-in-from-bottom-full duration-500">
+                                <div className="flex justify-between items-center mb-8">
+                                    <h2 className="text-2xl font-black text-pink-600 tracking-tight">今天的飲料紀錄</h2>
+                                    <button onClick={() => setIsModalOpen(false)} className="bg-pink-50 p-3 rounded-2xl text-pink-300"><X size={20} /></button>
+                                </div>
+                                <form onSubmit={handleAddDrink} className="space-y-6">
+                                    <input name="shop" required placeholder="哪家飲料店？" className="w-full bg-pink-50/50 rounded-[1.5rem] px-6 py-4 font-bold outline-none border-2 border-transparent focus:border-pink-200" value={formData.shop} onChange={handleInputChange} />
+                                    <input name="item" required placeholder="點了什麼品項？" className="w-full bg-pink-50/50 rounded-[1.5rem] px-6 py-4 font-bold outline-none border-2 border-transparent focus:border-pink-200" value={formData.item} onChange={handleInputChange} />
+                                    <div className="space-y-2"><p className="text-[10px] font-black text-pink-300 uppercase px-2 tracking-widest">甜度</p>
+                                        <div className="grid grid-cols-3 gap-2">{SWEETNESS_OPTIONS.map(opt => (
+                                            <button key={opt} type="button" onClick={() => setFormData(p => ({...p, sweetness: opt}))} className={`py-3 rounded-2xl text-xs font-black transition-all ${formData.sweetness === opt ? 'bg-pink-500 text-white shadow-lg' : 'bg-pink-50/50 text-pink-300'}`}>{opt}</button>
+                                        ))}</div>
+                                    </div>
+                                    <div className="space-y-2"><p className="text-[10px] font-black text-pink-300 uppercase px-2 tracking-widest">冰塊</p>
+                                        <div className="flex flex-wrap gap-2">{ICE_OPTIONS.map(opt => (
+                                            <button key={opt} type="button" onClick={() => setFormData(p => ({...p, ice: opt}))} className={`px-5 py-3 rounded-2xl text-xs font-black transition-all ${formData.ice === opt ? 'bg-pink-500 text-white shadow-lg' : 'bg-pink-50/50 text-pink-300'}`}>{opt}</button>
+                                        ))}</div>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <input name="price" type="number" required placeholder="價格 $" className="w-full bg-pink-50/50 rounded-2xl px-6 py-4 font-black outline-none border-2 border-transparent focus:border-pink-200" value={formData.price} onChange={handleInputChange} />
+                                        <input name="date" type="date" required className="w-full bg-pink-50/50 rounded-2xl px-6 py-4 font-bold outline-none border-2 border-transparent focus:border-pink-200" value={formData.date} onChange={handleInputChange} />
+                                    </div>
+                                    <div className="space-y-4 pt-4">
+                                        <div className="flex justify-between px-2 text-[10px] font-black text-pink-300 uppercase">評價 ({formData.rating}) <div className="flex gap-1">{[1,2,3,4,5].map(s => <Star key={s} size={14} className={s <= formData.rating ? 'fill-pink-400 text-pink-400' : 'text-pink-50'} />)}</div></div>
+                                        <input type="range" min="1" max="5" step="1" className="w-full h-3 bg-pink-50 rounded-full appearance-none accent-pink-500" value={formData.rating} onChange={(e) => setFormData(prev => ({...prev, rating: parseInt(e.target.value)}))} />
+                                    </div>
+                                    <textarea name="comment" placeholder="這杯味道如何？" className="w-full bg-pink-50/50 rounded-[1.5rem] px-6 py-4 font-medium outline-none h-24 border-2 border-transparent focus:border-pink-200" value={formData.comment} onChange={handleInputChange}></textarea>
+                                    <button type="submit" className="w-full bg-pink-500 text-white font-black py-5 rounded-[1.5rem] shadow-xl hover:bg-pink-600 active:scale-95 transition-all flex items-center justify-center gap-2"><Check size={20} /> 儲存日誌</button>
+                                </form>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
